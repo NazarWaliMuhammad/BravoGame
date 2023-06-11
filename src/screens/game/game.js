@@ -1,21 +1,39 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import IconModal from '../../components/iconModal';
-import LoseModal from '../../components/loseModal';
-import WinModal from '../../components/WinModal';
 import PlaySound from '../../../assets/sound/pressSound';
 import FlipCard from 'react-native-flip-card';
 
 const GameScreen = props => {
   const [icon, setIcon] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
-  const [data, setData] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [data, setData] = useState(null);
   const [flipped, setFlipped] = useState(false);
-  // const [numTiles, setNumTiles] = useState(null);
-  const Carouseldata = props.route.params.data.j;
-  console.log(Carouseldata);
+  const numTiles = props.route.params.tiles;
+  const Carouseldata = props.route.params.data;
+
   // const [Carouseldata, setCarouseldata] = useState(props.route.params.data);
+  const generateRandomImages = async () => {
+    let randomImg = [];
+    for (let a = 0; a < numTiles; a++) {
+      const randomIndex = Math.floor(Math.random() * Carouseldata.length);
+      // console.log(randomIndex);
+      if (randomImg.includes(Carouseldata[randomIndex])) {
+        a--;
+        continue;
+      } else {
+        randomImg.push(Carouseldata[randomIndex]);
+      }
+    }
+    setData(randomImg);
+  };
+  useEffect(() => {
+    generateRandomImages();
+    setTimeout(() => {
+      setFlipped(true);
+      setModalVisible(true);
+    }, 2000);
+  }, []);
 
   const data2 = [
     {
@@ -153,10 +171,8 @@ const GameScreen = props => {
         </Text>
       </View>
       <FlatList
-        style={{
-          alignSelf: 'center',
-        }}
-        data={Carouseldata}
+        style={{alignSelf: 'center'}}
+        data={data}
         numColumns={3}
         renderItem={({item}) => {
           return (
@@ -237,13 +253,6 @@ const GameScreen = props => {
                   </TouchableOpacity>
                 </View>
               </FlipCard>
-              <IconModal
-                data={Carouseldata}
-                onPressUp={() => {
-                  setModalVisible(false);
-                }}
-                visible={modalVisible}
-              />
             </View>
           );
         }}
@@ -273,6 +282,13 @@ const GameScreen = props => {
           </Text>
         </TouchableOpacity>
       </View>
+      <IconModal
+        visible={modalVisible}
+        data={Carouseldata}
+        onPressUp={() => {
+          setModalVisible(false);
+        }}
+      />
     </View>
   );
 };

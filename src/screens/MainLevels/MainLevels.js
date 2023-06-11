@@ -121,11 +121,7 @@ const MainScreen = props => {
           return (
             <TouchableOpacity
               disabled={
-                index === 1 ||
-                index === 2 ||
-                index === 3 ||
-                index === 4 ||
-                index === 5
+                index === 1 || index === 3 || index === 4 || index === 5
                   ? true
                   : false
               }
@@ -141,11 +137,7 @@ const MainScreen = props => {
                 backgroundColor: 'white',
                 borderRadius: 15,
                 opacity:
-                  index === 1 ||
-                  index === 2 ||
-                  index === 3 ||
-                  index === 4 ||
-                  index === 5
+                  index === 1 || index === 3 || index === 4 || index === 5
                     ? 0.5
                     : 1,
               }}>

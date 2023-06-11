@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   Image,
   Modal,
@@ -15,7 +15,48 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import PlaySound from '../../assets/sound/pressSound';
 const IconModal = props => {
   const imgs = props.data;
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+
+    'https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_1280.jpg',
+  ]);
+
   //   const SLIDER_WIDTH = Dimensions.get('window').width + 30;
   //   const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
   const shuffleImgs = () => {
@@ -29,11 +70,12 @@ const IconModal = props => {
         randomImg.push(imgs[randomIndex]);
       }
     }
-    return randomImg;
+    setData(randomImg);
+    // console.log(randomImg.length);
   };
   useEffect(() => {
-    setData(shuffleImgs());
-  });
+    shuffleImgs();
+  }, []);
   //   const renderItem = ({item}) => {
   //     return (
   //       <View
@@ -48,6 +90,7 @@ const IconModal = props => {
   //         <Text style={{marginVertical: 10, fontSize: 20, fontWeight: 'bold'}}>
   //           {item.name}
   //         </Text>
+
   //       </View>
   //     );
   //   };
@@ -55,7 +98,8 @@ const IconModal = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleButtonPress = () => {
     // Update the currentIndex state to slide the carousel
-    setCurrentIndex((currentIndex + 1) % props.data.length);
+    setCurrentIndex((currentIndex + 1) % data.length);
+    console.log(currentIndex);
   };
   return (
     <Modal transparent={true} visible={props.visible}>
@@ -103,6 +147,7 @@ const IconModal = props => {
                 width={width}
                 height={width / 1.1}
                 // autoPlay={true}
+                enabled={false}
                 data={data}
                 scrollAnimationDuration={1000}
                 onSnapToItem={index => console.log('current index:', index)}
@@ -119,21 +164,9 @@ const IconModal = props => {
                   </View>
                 )}
               />
-              {/* <Carousel
-              data={props.data}
-              renderItem={renderItem}
-              sliderWidth={SLIDER_WIDTH}
-              itemWidth={ITEM_WIDTH}
-            /> */}
-              {/* <Image
-              style={{width: 130, height: 180}}
-              source={{
-                uri: 'https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_1280.jpg',
-              }}
-            /> */}
+
               <TouchableOpacity
                 onPress={() => {
-                  PlaySound();
                   handleButtonPress();
                   props.onPressUp();
                 }}
