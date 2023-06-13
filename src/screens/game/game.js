@@ -5,11 +5,13 @@ import PlaySound from '../../../assets/sound/pressSound';
 import FlipCard from 'react-native-flip-card';
 import GameStartModal from '../../components/gameStartModal';
 import AppBackground from '../../components/appBackground ';
-
+import {useSelector, useDispatch} from 'react-redux';
+import {setTimer} from '../../../redux/Action/Action';
+import Timer from '../../components/Timer';
 const GameScreen = props => {
-  const [icon, setIcon] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
-
+  const time = useSelector(state => state.time);
+  const dispatch = useDispatch();
   const [data, setData] = useState(null);
   const [flipped, setFlipped] = useState(false);
   const numTiles = props.route.params.tiles;
@@ -30,8 +32,10 @@ const GameScreen = props => {
     }
     setData(randomImg);
   };
+
   useEffect(() => {
     generateRandomImages();
+
     setTimeout(() => {
       setFlipped(true);
       setModalVisible(true);
@@ -147,15 +151,16 @@ const GameScreen = props => {
             }}>
             Time Remaining
           </Text>
-          <Text
+          <Timer />
+          {/* <Text
             style={{
               fontSize: 18,
               fontFamily: 'LeagueSpartan-SemiBold',
               color: '#FFB600',
               marginTop: 5,
             }}>
-            4:47
-          </Text>
+            {time}
+          </Text> */}
         </View>
       </View>
       <View

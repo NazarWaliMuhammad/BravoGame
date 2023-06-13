@@ -1,0 +1,4 @@
+{
+  "welcome": "Welcome to React Native!",
+  "greeting": "Hello, {{name}}!"
+}

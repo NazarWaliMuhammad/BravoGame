@@ -4,7 +4,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Main from './src/navigator/MainNav';
-
+import {Provider} from 'react-redux';
+import {mystore} from './redux/Store/store';
 const App = () => {
   // useEffect(() => {
   //   // Import the react-native-sound module
@@ -72,7 +73,11 @@ const App = () => {
   //   whoosh.release();
   // }, []);
   const [icon, setIcon] = useState(true);
-  return <Main />;
+  return (
+    <Provider store={mystore}>
+      <Main />
+    </Provider>
+  );
 };
 
 export default App;

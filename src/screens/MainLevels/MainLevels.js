@@ -25,34 +25,40 @@ const MainScreen = props => {
   };
   const data = [
     {
-      level: MAIN_LEVLES[1].level,
+      level: '1st',
       name: 'Animals',
       img: '',
+      isLocked: false,
     },
     {
       level: '2nd',
       name: 'People',
       img: '',
+      isLocked: true,
     },
     {
       level: '3rd',
       name: 'Sports',
       img: '',
+      isLocked: true,
     },
     {
       level: '4th',
       name: 'Fantasy Forms 1',
       img: '',
+      isLocked: true,
     },
     {
       level: '5th',
       name: 'Fantasy Forms 2',
       img: '',
+      isLocked: true,
     },
     {
       level: '6th',
       name: 'Fantasy Forms 3',
       img: '',
+      isLocked: true,
     },
   ];
   return (
@@ -122,11 +128,7 @@ const MainScreen = props => {
         renderItem={({item, index}) => {
           return (
             <TouchableOpacity
-              disabled={
-                index === 1 || index === 3 || index === 4 || index === 5
-                  ? true
-                  : false
-              }
+              disabled={item.isLocked}
               onPress={() => {
                 PlaySound();
                 props.navigation.navigate('Sub', {name: item.name});
@@ -138,10 +140,7 @@ const MainScreen = props => {
                 margin: 8,
                 backgroundColor: 'white',
                 borderRadius: 15,
-                opacity:
-                  index === 1 || index === 3 || index === 4 || index === 5
-                    ? 0.5
-                    : 1,
+                opacity: item.isLocked ? 0.5 : 1,
               }}>
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Text
@@ -167,11 +166,7 @@ const MainScreen = props => {
                     uri: 'https://cdn.pixabay.com/photo/2013/07/13/13/14/tiger-160601_1280.png',
                   }}
                   style={{width: 85, height: 88, marginTop: 6}}>
-                  {index === 1 ||
-                  index === 2 ||
-                  index === 3 ||
-                  index === 4 ||
-                  index === 5 ? (
+                  {item.isLocked ? (
                     <Ionicons
                       style={{alignSelf: 'center'}}
                       name="lock-closed"

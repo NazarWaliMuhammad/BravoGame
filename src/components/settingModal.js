@@ -7,14 +7,24 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  Picker,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import PlaySound from '../../assets/sound/pressSound';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {useTranslation} from 'react-i18next';
+
 const SettingModal = props => {
   const [soundIcon, setSoundIcon] = useState(true);
   const [musicIcon, setMusicIcon] = useState(true);
+  const [isSelected, setIsSelected] = useState(true);
+  const {i18n} = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
+  const handleChangeLanguage = language => {
+    i18n.changeLanguage(language);
+    setSelectedLanguage(language);
+  };
   //   const SLIDER_WIDTH = Dimensions.get('window').width + 30;
   //   const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
   //   const renderItem = ({item}) => {
@@ -132,6 +142,63 @@ const SettingModal = props => {
                   <FontAwesome5 name="toggle-off" size={34} color="red" />
                 )}
               </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                width: '100%',
+                height: 50,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingTop: 20,
+              }}>
+              <Text
+                style={{
+                  marginStart: 10,
+                  fontFamily: 'LeagueSpartan-SemiBold',
+                  fontSize: 30,
+                  color: '#FFB600',
+                }}>
+                Language
+              </Text>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <TouchableOpacity
+                  // disabled={selectedLanguage === 'en'}
+                  style={{marginEnd: 10}}
+                  onPress={() => {
+                    setIsSelected(true);
+                    PlaySound();
+                    handleChangeLanguage('en');
+                  }}>
+                  <Text
+                    style={{
+                      marginStart: 10,
+                      fontFamily: 'LeagueSpartan-SemiBold',
+                      fontSize: 20,
+                      color: isSelected ? '#00b200' : '#d3d3d3',
+                    }}>
+                    En
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  // disabled={selectedLanguage === 'en'}
+                  style={{marginEnd: 10}}
+                  onPress={() => {
+                    setIsSelected(false);
+                    PlaySound();
+                    handleChangeLanguage('it');
+                  }}>
+                  <Text
+                    style={{
+                      marginStart: 10,
+                      fontFamily: 'LeagueSpartan-SemiBold',
+                      fontSize: 20,
+                      color: isSelected ? '#d3d3d3' : '#00b200',
+                    }}>
+                    It
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
           <View

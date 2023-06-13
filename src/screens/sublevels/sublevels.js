@@ -2,24 +2,28 @@ import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Image,
+  ImageBackground,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Feather from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import PlaySound from '../../../assets/sound/pressSound';
 import SettingModal from '../../components/settingModal';
 import GameStartModal from '../../components/gameStartModal';
 import AppBackground from '../../components/appBackground ';
+import {useTranslation} from 'react-i18next';
+
 // import {ANIMALS_IMGS} from '../../utils/services/GameServices/LevelUtils';
 const SubScreen = props => {
   const [settingModal, setSettingModal] = useState(false);
   const [category, setCategory] = useState(null);
   const [infoModalVisible, setInfoModalVisible] = useState(false);
+  const {t, i18n} = useTranslation();
 
   useEffect(() => {
     if (props.route.params.name === 'Animals') {
@@ -445,6 +449,9 @@ const SubScreen = props => {
       onPress: () => {
         setInfoModalVisible(true);
       },
+      img: require('../../../assets/image/level01.png'),
+      isLocked: false,
+
       // .map(item => {
       //   return item.image;
       // }),
@@ -462,6 +469,9 @@ const SubScreen = props => {
           tiles: 3,
         });
       },
+      img: require('../../../assets/image/level02.png'),
+      isLocked: true,
+
       // .map(item => {
       //   return item.image;
       // }),
@@ -479,6 +489,9 @@ const SubScreen = props => {
           tiles: 4,
         });
       },
+      img: require('../../../assets/image/level03.png'),
+      isLocked: true,
+
       // .map(item => {
       //   return item.image;
       // }),
@@ -496,6 +509,9 @@ const SubScreen = props => {
           tiles: 5,
         });
       },
+      img: require('../../../assets/image/level04.png'),
+      isLocked: true,
+
       // .map(item => {
       //   return item.image;
       // }),
@@ -513,6 +529,9 @@ const SubScreen = props => {
           tiles: 6,
         });
       },
+      img: require('../../../assets/image/level05.png'),
+      isLocked: true,
+
       // .map(item => {
       //   return item.image;
       // }),
@@ -530,6 +549,9 @@ const SubScreen = props => {
           tiles: 7,
         });
       },
+      img: require('../../../assets/image/level06.png'),
+      isLocked: true,
+
       // .map(item => {
       //   return item.image;
       // }),
@@ -547,6 +569,9 @@ const SubScreen = props => {
           tiles: 8,
         });
       },
+      img: require('../../../assets/image/level07.png'),
+      isLocked: true,
+
       // .map(item => {
       //   return item.image;
       // }),
@@ -564,6 +589,8 @@ const SubScreen = props => {
           tiles: 9,
         });
       },
+      img: require('../../../assets/image/level08.png'),
+      isLocked: true,
       // .map(item => {
       //   return item.image;
       // }),
@@ -587,68 +614,41 @@ const SubScreen = props => {
         }}>
         <View
           style={{
-            width: '35%',
-            height: 55,
-            backgroundColor: 'white',
+            width: '30%',
+            height: 40,
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
             marginEnd: 10,
             borderRadius: 15,
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
           }}>
+          <AntDesign name="star" size={24} color="#FFB600" />
           <Text
             style={{
               fontSize: 20,
               fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#00b200',
-            }}>
-            Scoreboard
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#FFB600',
+              color: 'white',
               marginTop: 5,
             }}>
             2432
-          </Text>
-        </View>
-        <View
-          style={{
-            width: '35%',
-            height: 55,
-            backgroundColor: 'white',
-            marginStart: 10,
-            borderRadius: 15,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text
-            style={{
-              fontSize: 18,
-              fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#00b200',
-            }}>
-            Time Remaining
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#FFB600',
-              marginTop: 5,
-            }}>
-            4:47
           </Text>
         </View>
       </View>
       <View
         style={{
           width: '100%',
-          height: 150,
-          justifyContent: 'center',
+          height: 100,
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
           alignItems: 'center',
         }}>
+        <TouchableOpacity>
+          <Image
+            source={require('../../../assets/image/back.png')}
+            style={{width: 60, height: 60}}
+          />
+        </TouchableOpacity>
         <Text
           style={{
             fontSize: 60,
@@ -657,63 +657,97 @@ const SubScreen = props => {
           }}>
           {props.route.params.name}
         </Text>
+        <TouchableOpacity>
+          <Image
+            source={require('../../../assets/image/next.png')}
+            style={{width: 60, height: 60}}
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View
+        style={{
+          width: 100,
+          height: 30,
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          flexDirection: 'row',
+          borderRadius: 15,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          alignSelf: 'center',
+        }}>
+        <AntDesign
+          name="clockcircleo"
+          size={20}
+          color="white"
+          style={{marginStart: 14}}
+        />
+        <View
+          style={{
+            width: '70%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row',
+          }}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontFamily: 'LeagueSpartan-SemiBold',
+              color: 'white',
+              marginTop: 5,
+              textAlign: 'center',
+            }}>
+            04:47
+          </Text>
+        </View>
       </View>
       <FlatList
         style={{alignSelf: 'center'}}
         data={data}
         numColumns={3}
-        renderItem={({item}) => {
+        renderItem={({item, index}) => {
           return (
             <TouchableOpacity
+              disabled={item.isLocked}
               onPress={item.onPress}
               style={{
                 alignSelf: 'center',
-                width: '29%',
-                height: 155,
+                // width: '28%',
+                // height: 135,
                 margin: 8,
-                backgroundColor: 'white',
+                // backgroundColor: 'white',
                 borderRadius: 15,
+                alignItems: 'center',
+                justifyContent: 'center',
+                opacity: item.isLocked ? 0.5 : 1,
               }}>
-              <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Text
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                }}>
+                <ImageBackground
+                  source={item.img}
                   style={{
-                    fontFamily: 'LeagueSpartan-SemiBold',
-                    fontSize: 18,
-                    marginTop: 10,
-                    color: '#00b200',
-                  }}>
-                  {item.level}
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: 'LeagueSpartan-SemiBold',
-                    fontSize: 22,
-                    marginTop: 5,
-                    color: '#FFB600',
-                  }}>
-                  Level
-                </Text>
-                <Image
-                  source={{
-                    uri: 'https://img.freepik.com/free-vector/seamless-pattern-vintage-stone-hexagonal-tiles-textured-paving-background-bright-geometric-tiles_172107-1295.jpg?w=826&t=st=1685810197~exp=1685810797~hmac=a1d2e1d1cb94bc52666246398c4da5d44cb28250fe5ae59d5fde28f04278a2e5',
-                  }}
-                  style={{
-                    width: 60,
-                    height: 60,
+                    width: 105,
+                    height: 105,
                     marginTop: 6,
                     borderRadius: 10,
-                  }}
-                />
-                <Text
-                  style={{
-                    fontFamily: 'LeagueSpartan-SemiBold',
-                    fontSize: 16,
-                    color: item.color,
-                    marginTop: 8,
-                    marginStart: 4,
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}>
-                  {item.difficulty}
-                </Text>
+                  {item.isLocked ? (
+                    <Ionicons
+                      style={{alignSelf: 'center'}}
+                      name="lock-closed"
+                      size={70}
+                      color="red"
+                    />
+                  ) : (
+                    ''
+                  )}
+                </ImageBackground>
                 {/* <Text
                   style={{
                     fontFamily: 'LeagueSpartan-SemiBold',
