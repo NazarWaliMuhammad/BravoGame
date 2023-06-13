@@ -13,10 +13,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PlaySound from '../../../assets/sound/pressSound';
 import SettingModal from '../../components/settingModal';
+import GameStartModal from '../../components/gameStartModal';
+import AppBackground from '../../components/appBackground ';
 // import {ANIMALS_IMGS} from '../../utils/services/GameServices/LevelUtils';
 const SubScreen = props => {
   const [settingModal, setSettingModal] = useState(false);
   const [category, setCategory] = useState(null);
+  const [infoModalVisible, setInfoModalVisible] = useState(false);
 
   useEffect(() => {
     if (props.route.params.name === 'Animals') {
@@ -436,101 +439,145 @@ const SubScreen = props => {
   const data = [
     {
       level: '1st',
-      name: 2,
       img: 'https://img.freepik.com/free-vector/seamless-pattern-vintage-stone-hexagonal-tiles-textured-paving-background-bright-geometric-tiles_172107-1295.jpg?w=826&t=st=1685810197~exp=1685810797~hmac=a1d2e1d1cb94bc52666246398c4da5d44cb28250fe5ae59d5fde28f04278a2e5',
       color: '#88CCEE',
       difficulty: 'Begginer',
-      data: category,
+      onPress: () => {
+        setInfoModalVisible(true);
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
     {
       level: '2nd',
-      name: 3,
+
       img: 'https://cdn.pixabay.com/photo/2022/03/24/16/30/gardener-7089417_1280.png',
       color: '#55BBAA',
       difficulty: 'Easy',
-      data: category,
+
+      onPress: () => {
+        props.navigation.navigate('Game', {
+          data: category,
+          tiles: 3,
+        });
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
     {
       level: '3rd',
-      name: 4,
+
       img: 'https://cdn.pixabay.com/photo/2013/07/13/10/51/football-157930_1280.png',
       color: '#FFBB66',
       difficulty: 'Intermediate',
-      data: category,
+
+      onPress: () => {
+        props.navigation.navigate('Game', {
+          data: category,
+          tiles: 4,
+        });
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
     {
       level: '4th',
-      name: 5,
+
       img: 'https://cdn.pixabay.com/photo/2019/02/19/16/53/rock-4007203_1280.png',
       color: '#FF8866',
       difficulty: 'Advanced',
-      data: category,
+
+      onPress: () => {
+        props.navigation.navigate('Game', {
+          data: category,
+          tiles: 5,
+        });
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
     {
       level: '5th',
-      name: 6,
+
       img: 'https://cdn.pixabay.com/photo/2021/02/07/19/37/drawing-5992475_1280.png',
       color: '#FF5555',
       difficulty: 'Expert',
-      data: category,
+
+      onPress: () => {
+        props.navigation.navigate('Game', {
+          data: category,
+          tiles: 6,
+        });
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
     {
       level: '6th',
-      name: 7,
+
       img: 'https://cdn.pixabay.com/photo/2017/12/16/22/26/snowflake-3023441_1280.png',
       color: '#AA4488',
       difficulty: 'Master',
-      data: category,
+
+      onPress: () => {
+        props.navigation.navigate('Game', {
+          data: category,
+          tiles: 7,
+        });
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
     {
       level: '7th',
-      name: 8,
+
       img: 'https://cdn.pixabay.com/photo/2017/12/16/22/26/snowflake-3023441_1280.png',
       color: '#8844AA',
       difficulty: 'Prodigy',
-      data: category,
+
+      onPress: () => {
+        props.navigation.navigate('Game', {
+          data: category,
+          tiles: 8,
+        });
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
     {
       level: '8th',
-      name: 9,
+
       img: 'https://cdn.pixabay.com/photo/2017/12/16/22/26/snowflake-3023441_1280.png',
       color: '#332288',
       difficulty: 'Grandmaster',
-      data: category,
+
+      onPress: () => {
+        props.navigation.navigate('Game', {
+          data: category,
+          tiles: 9,
+        });
+      },
       // .map(item => {
       //   return item.image;
       // }),
     },
   ];
   return (
-    <View
-      style={{
-        flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: '#00b200',
-      }}>
+    // <View
+    //   style={{
+    //     flex: 1,
+    //     // justifyContent: 'center',
+    //     // alignItems: 'center',
+    //     backgroundColor: '#00b200',
+    //   }}>
+    <AppBackground>
       <View
         style={{
           flexDirection: 'row-reverse',
@@ -618,13 +665,7 @@ const SubScreen = props => {
         renderItem={({item}) => {
           return (
             <TouchableOpacity
-              onPress={() => {
-                // generateRandomImages(item.name);
-                props.navigation.navigate('Game', {
-                  tiles: item.name,
-                  data: item.data,
-                });
-              }}
+              onPress={item.onPress}
               style={{
                 alignSelf: 'center',
                 width: '29%',
@@ -728,6 +769,20 @@ const SubScreen = props => {
           <Ionicons name="settings" size={40} color="#00b200" />
         </TouchableOpacity>
       </View>
+      <GameStartModal
+        onPressStart={() => {
+          setInfoModalVisible(false);
+
+          props.navigation.navigate('Game', {
+            data: category,
+            tiles: 2,
+          });
+        }}
+        onPressCancel={() => {
+          setInfoModalVisible(false);
+        }}
+        visible={infoModalVisible}
+      />
       <SettingModal
         onPressK={() => {
           setSettingModal(false);
@@ -739,7 +794,7 @@ const SubScreen = props => {
           PlaySound();
         }}
       />
-    </View>
+    </AppBackground>
   );
 };
 

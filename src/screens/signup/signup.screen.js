@@ -5,16 +5,18 @@ import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PlaySound from '../../../assets/sound/pressSound';
+import AppBackground from '../../components/appBackground ';
 const SignUpScreen = props => {
   const [icon, setIcon] = useState(true);
   return (
-    <View
-      style={{
-        flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: '#00b200',
-      }}>
+    // <View
+    //   style={{
+    //     flex: 1,
+    //     // justifyContent: 'center',
+    //     // alignItems: 'center',
+    //     // backgroundColor: '#00b200',
+    //   }}>
+    <AppBackground>
       <View style={{marginTop: 40}}>
         <TouchableOpacity
           onPress={() => {
@@ -28,7 +30,7 @@ const SignUpScreen = props => {
       <View
         style={{
           width: '100%',
-          height: 200,
+          height: 280,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
@@ -50,15 +52,16 @@ const SignUpScreen = props => {
             backgroundColor: 'white',
             borderRadius: 20,
             alignItems: 'center',
+            marginTop: 20,
           }}>
           <MaterialCommunityIcons
             style={{marginStart: 24}}
-            name="account-tie"
+            name="alphabet-latin"
             size={33}
             color="#00b200"
           />
           <TextInput
-            placeholder="Email"
+            placeholder="Username"
             style={{
               width: '80%',
               height: 55,
@@ -123,62 +126,6 @@ const SignUpScreen = props => {
             )}
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            width: '85%',
-            height: 55,
-            flexDirection: 'row',
-            backgroundColor: 'white',
-            borderRadius: 20,
-            alignItems: 'center',
-            marginTop: 20,
-          }}>
-          <MaterialCommunityIcons
-            style={{marginStart: 24}}
-            name="alphabet-latin"
-            size={33}
-            color="#00b200"
-          />
-          <TextInput
-            placeholder="Username"
-            style={{
-              width: '80%',
-              height: 55,
-              marginStart: 10,
-              fontFamily: 'LeagueSpartan-Bold',
-              fontSize: 19,
-            }}
-            placeholderTextColor="gray"
-          />
-        </View>
-        <View
-          style={{
-            width: '85%',
-            height: 55,
-            flexDirection: 'row',
-            backgroundColor: 'white',
-            borderRadius: 20,
-            alignItems: 'center',
-            marginTop: 20,
-          }}>
-          <MaterialCommunityIcons
-            style={{marginStart: 24}}
-            name="home"
-            size={33}
-            color="#00b200"
-          />
-          <TextInput
-            placeholder="Country"
-            style={{
-              width: '80%',
-              height: 55,
-              marginStart: 10,
-              fontFamily: 'LeagueSpartan-Bold',
-              fontSize: 19,
-            }}
-            placeholderTextColor="gray"
-          />
-        </View>
         <TouchableOpacity
           onPress={() => {
             PlaySound();
@@ -204,40 +151,6 @@ const SignUpScreen = props => {
               fontSize: 25,
             }}>
             Sign up
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            PlaySound();
-          }}
-          style={{
-            marginTop: 24,
-            width: '80%',
-            height: 60,
-            flexDirection: 'row',
-            alignItems: 'center',
-            backgroundColor: '#718BD9',
-            borderRadius: 20,
-            elevation: 4,
-            shadowOffset: {width: 0, height: 0},
-            shadowColor: 'black',
-            shadowRadius: 20,
-            shadowOpacity: 0.2,
-          }}>
-          <MaterialCommunityIcons
-            style={{marginStart: 30}}
-            name="facebook"
-            size={34}
-            color="#3b5998"
-          />
-          <Text
-            style={{
-              fontFamily: 'LeagueSpartan-SemiBold',
-              color: 'white',
-              fontSize: 20,
-              marginStart: 16,
-            }}>
-            Sign up With Facebook
           </Text>
         </TouchableOpacity>
         <View
@@ -267,7 +180,7 @@ const SignUpScreen = props => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </AppBackground>
   );
 };
 

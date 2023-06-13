@@ -48,8 +48,6 @@ const LoseModal = props => {
             height: 150,
             borderRadius: 10,
             alignItems: 'center',
-            borderWidth: 3,
-            borderColor: '#FFB600',
           }}>
           <Text
             style={{

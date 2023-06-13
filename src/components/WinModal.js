@@ -8,9 +8,8 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
 import PlaySound from '../../assets/sound/pressSound';
-import Entypo from 'react-native-vector-icons/Entypo';
+
 const WinModal = props => {
   //   const SLIDER_WIDTH = Dimensions.get('window').width + 30;
   //   const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);

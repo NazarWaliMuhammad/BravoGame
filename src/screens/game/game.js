@@ -3,10 +3,13 @@ import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import IconModal from '../../components/iconModal';
 import PlaySound from '../../../assets/sound/pressSound';
 import FlipCard from 'react-native-flip-card';
+import GameStartModal from '../../components/gameStartModal';
+import AppBackground from '../../components/appBackground ';
 
 const GameScreen = props => {
   const [icon, setIcon] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+
   const [data, setData] = useState(null);
   const [flipped, setFlipped] = useState(false);
   const numTiles = props.route.params.tiles;
@@ -83,13 +86,14 @@ const GameScreen = props => {
     },
   ];
   return (
-    <View
-      style={{
-        flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: '#00b200',
-      }}>
+    // <View
+    //   style={{
+    //     flex: 1,
+    //     // justifyContent: 'center',
+    //     // alignItems: 'center',
+    //     backgroundColor: '#00b200',
+    //   }}>
+    <AppBackground>
       <View
         style={{
           flexDirection: 'row-reverse',
@@ -282,6 +286,7 @@ const GameScreen = props => {
           </Text>
         </TouchableOpacity>
       </View>
+
       <IconModal
         visible={modalVisible}
         data={Carouseldata}
@@ -289,7 +294,7 @@ const GameScreen = props => {
           setModalVisible(false);
         }}
       />
-    </View>
+    </AppBackground>
   );
 };
 

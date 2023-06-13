@@ -15,6 +15,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PlaySound from '../../../assets/sound/pressSound';
 import SettingModal from '../../components/settingModal';
 import {MAIN_LEVLES} from '../../utils/services/GameServices/LevelUtils';
+import AppBackground from '../../components/appBackground ';
 const MainScreen = props => {
   console.log();
   const [icon, setIcon] = useState(true);
@@ -55,13 +56,14 @@ const MainScreen = props => {
     },
   ];
   return (
-    <View
-      style={{
-        flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: '#00b200',
-      }}>
+    // <View
+    //   style={{
+    //     flex: 1,
+    //     // justifyContent: 'center',
+    //     // alignItems: 'center',
+    //     backgroundColor: '#00b200',
+    //   }}>
+    <AppBackground>
       <View
         style={{
           flexDirection: 'row-reverse',
@@ -246,7 +248,7 @@ const MainScreen = props => {
           PlaySound();
         }}
       />
-    </View>
+    </AppBackground>
   );
 };
 

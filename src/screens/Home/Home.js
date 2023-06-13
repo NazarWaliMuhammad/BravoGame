@@ -13,6 +13,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontiso from 'react-native-vector-icons/Fontisto';
 import PlaySound from '../../../assets/sound/pressSound';
+import AppBackground from '../../components/appBackground ';
 const HomeScreen = props => {
   const data = [
     {
@@ -47,17 +48,7 @@ const HomeScreen = props => {
     },
   ];
   return (
-    <ImageBackground
-      source={{
-        uri: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5904f729875233.5608b9a200122.png',
-      }}
-      style={{
-        flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // backgroundColor: '#03D1FF',
-        // flexDirection: 'column-reverse',
-      }}>
+    <AppBackground>
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
         <View
           style={{
@@ -301,7 +292,7 @@ const HomeScreen = props => {
         </TouchableOpacity>
       </View> */}
       </View>
-    </ImageBackground>
+    </AppBackground>
   );
 };
 
