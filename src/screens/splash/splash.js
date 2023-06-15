@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
@@ -12,21 +11,25 @@ import {
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import AppBackground from '../../components/appBackground ';
-import WinModal from '../../components/WinModal';
-import LoseModal from '../../components/loseModal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = props => {
   const {i18n} = useTranslation();
   // const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+  const _checkAuth = async() => {
+    const lang_selected = await AsyncStorage.getItem('Selected_Language');
+    if(!lang_selected) {
+        props.navigation.replace("FirstTimeLogin")
+    }  else {
+      i18n.changeLanguage(lang_selected);
+      setTimeout(() => {
+        props.navigation.navigate('Login');
+      }, 1500);
+    }
+   
+  }
   useEffect(() => {
-    const getLang = async () => {
-      const lang = await AsyncStorage.getItem('Selected_Language');
-      i18n.changeLanguage(lang);
-    };
-    getLang();
-    setTimeout(() => {
-      props.navigation.navigate('Login');
-    }, 2000);
+   _checkAuth();
   }, []);
   return (
     <AppBackground>

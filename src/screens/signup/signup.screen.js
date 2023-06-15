@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, TextInput, TouchableOpacity, View, Image} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View, Image, ActivityIndicator, ScrollView} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -7,10 +7,40 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PlaySound from '../../../assets/sound/pressSound';
 import AppBackground from '../../components/appBackground ';
 import {useTranslation} from 'react-i18next';
+import auth from '@react-native-firebase/auth';
+
 const SignUpScreen = props => {
   const [icon, setIcon] = useState(true);
   const {t, i18n} = useTranslation();
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const [isLoading,setIsLoading] = useState(false);
+  const [username,setUsername] = useState('');
 
+  const _registerUser = () => {
+    props.navigation.replace('Home');
+
+    // if (email.length === 0 || password.length === 0 || username.length == 0) {
+    //   alert('Please fill the form correctly, email,password and username are required');
+    // } else {
+    //   setIsLoading(true);
+    //   auth()
+    //     .createUserWithEmailAndPassword(email, password)
+    //     .then(() => {
+    //       props.navigation.replace('Home');
+    //       // setIsLoading(false);
+    //     })
+    //     .catch(error => {
+    //       setIsLoading(false);
+    //       // setIsLoading(false);
+    //       if (error.code === 'auth/invalid-email') {
+    //         alert('That email address is invalid!');
+    //       } else {
+    //         alert(error.code);
+    //       }
+    //     });
+    // }
+  };
   return (
     // <View
     //   style={{
@@ -20,7 +50,8 @@ const SignUpScreen = props => {
     //     // backgroundColor: '#00b200',
     //   }}>
     <AppBackground>
-      <View style={{marginTop: 40}}>
+       <ScrollView contentContainerStyle={{flexGrow:1}}>
+       <View style={{marginTop: 40}}>
         <TouchableOpacity
           onPress={() => {
             props.navigation.goBack();
@@ -79,7 +110,41 @@ const SignUpScreen = props => {
             color="black"
           />
           <TextInput
+            value={username}
+            onChangeText={value => setUsername(value)}
             placeholder={t('Username')}
+            style={{
+              width: '80%',
+              height: 55,
+              marginStart: 10,
+              fontFamily: 'LeagueSpartan-Bold',
+              fontSize: 19,
+            }}
+            placeholderTextColor="gray"
+          />
+        </View>
+
+
+        <View
+          style={{
+            width: '85%',
+            height: 55,
+            flexDirection: 'row',
+            backgroundColor: 'white',
+            borderRadius: 12,
+            alignItems: 'center',
+            marginTop: 10,
+          }}>
+          <MaterialCommunityIcons
+            style={{marginStart: 10}}
+            name="email-outline"
+            size={33}
+            color="black"
+          />
+          <TextInput
+            value={email}
+            onChangeText={value => setEmail(value)}
+            placeholder={t('email')}
             style={{
               width: '80%',
               height: 55,
@@ -99,7 +164,7 @@ const SignUpScreen = props => {
             backgroundColor: 'white',
             borderRadius: 12,
             alignItems: 'center',
-            marginTop: 20,
+            marginTop: 10,
             justifyContent: 'space-between',
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -111,6 +176,8 @@ const SignUpScreen = props => {
             />
 
             <TextInput
+              value={password}
+              onChangeText={value => setPassword(value)}
               placeholder={t('Password')}
               style={{
                 width: '70%',
@@ -147,8 +214,10 @@ const SignUpScreen = props => {
         </View>
 
         <TouchableOpacity
+        disabled={isLoading}
           onPress={() => {
             PlaySound();
+            _registerUser()
           }}
           style={{
             marginTop: 30,
@@ -164,7 +233,14 @@ const SignUpScreen = props => {
             shadowRadius: 12,
             shadowOpacity: 0.1,
           }}>
-          <Text
+           {
+            isLoading ? 
+            <ActivityIndicator
+            size='small'
+            color={'white'}
+            />
+            :
+            <Text
             style={{
               fontFamily: 'LeagueSpartan-SemiBold',
               color: 'white',
@@ -172,6 +248,7 @@ const SignUpScreen = props => {
             }}>
             {t('SignUp')}
           </Text>
+           }
         </TouchableOpacity>
         <View
           style={{flexDirection: 'row', alignSelf: 'center', marginTop: 20}}>
@@ -200,6 +277,7 @@ const SignUpScreen = props => {
           </TouchableOpacity>
         </View>
       </View>
+       </ScrollView>
     </AppBackground>
   );
 };

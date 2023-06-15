@@ -17,6 +17,7 @@ import SettingModal from '../../components/settingModal';
 import {MAIN_LEVLES} from '../../utils/services/GameServices/LevelUtils';
 import AppBackground from '../../components/appBackground ';
 import {useTranslation} from 'react-i18next';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 const MainScreen = props => {
   const {t, i18n} = useTranslation();
 
@@ -76,31 +77,24 @@ const MainScreen = props => {
           marginTop: 40,
           alignItems: 'center',
         }}>
-        <View
+       <View
           style={{
-            width: '35%',
-            height: 55,
-            backgroundColor: 'white',
+            width: '27%',
+            height: 40,
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
             marginEnd: 10,
-            borderRadius: 15,
+            borderRadius: 5,
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
           }}>
+          <AntDesign name="star" size={24} color="#FFB600" />
           <Text
             style={{
-              fontSize: 16,
+              fontSize: 20,
               fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#00b200',
-              textAlign: 'center',
-            }}>
-            {t('ScoreBoard')}
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#FFB600',
-              marginTop: 5,
+              color: 'white',
+              // marginTop: 5,
             }}>
             2432
           </Text>
@@ -137,11 +131,12 @@ const MainScreen = props => {
               style={{
                 alignSelf: 'center',
                 width: '29%',
-                height: 180,
+                minHeight: 200,
                 margin: 8,
-                backgroundColor: 'white',
+                backgroundColor:item.isLocked ? '#dcdcdc' :  'white',
                 borderRadius: 15,
-                opacity: item.isLocked ? 0.5 : 1,
+                paddingVertical:10
+                // opacity: item.isLocked ? 0.5 : 1,
               }}>
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Text
@@ -172,7 +167,7 @@ const MainScreen = props => {
                       style={{alignSelf: 'center'}}
                       name="lock-closed"
                       size={85}
-                      color="red"
+                      color="black"
                     />
                   ) : (
                     ''
@@ -213,8 +208,9 @@ const MainScreen = props => {
             backgroundColor: 'white',
             justifyContent: 'center',
             alignItems: 'center',
+            elevation:10
           }}>
-          <Ionicons name="arrow-back" size={40} color="#00b200" />
+          <Ionicons name="arrow-back" size={40} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -229,8 +225,10 @@ const MainScreen = props => {
             backgroundColor: 'white',
             justifyContent: 'center',
             alignItems: 'center',
+            elevation:10
+
           }}>
-          <Ionicons name="settings" size={40} color="#00b200" />
+          <Ionicons name="settings" size={40} color="black" />
         </TouchableOpacity>
       </View>
       <SettingModal

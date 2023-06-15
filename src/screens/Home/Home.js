@@ -15,6 +15,7 @@ import Fontiso from 'react-native-vector-icons/Fontisto';
 import PlaySound from '../../../assets/sound/pressSound';
 import AppBackground from '../../components/appBackground ';
 import {useTranslation} from 'react-i18next';
+import SettingModal from '../../components/settingModal';
 const HomeScreen = props => {
   const {t, i18n} = useTranslation();
 
@@ -50,8 +51,20 @@ const HomeScreen = props => {
       img: 'https://cdn.pixabay.com/photo/2017/12/16/22/26/snowflake-3023441_1280.png',
     },
   ];
+  const [settingModalVisible,setIsSettingModalVisible] = useState(false);
   return (
     <AppBackground>
+         <SettingModal
+        onPressK={() => {
+          setIsSettingModalVisible(false);
+          PlaySound();
+        }}
+        visible={settingModalVisible}
+        onPressC={() => {
+          setSettsetIsSettingModalVisibleingModal(false);
+          PlaySound();
+        }}
+      />
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
         <View
           style={{
@@ -164,12 +177,14 @@ const HomeScreen = props => {
                 props.navigation.navigate('Main');
               }}
               style={{
-                marginTop: 20,
-                width: 160,
+                borderWidth:1,
+                borderColor:'white',
+                backgroundColor:'transparent',
+                width: 250,
                 height: 60,
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: '#FFB600',
+                // backgroundColor: '#FFB600',
                 borderRadius: 20,
                 elevation: 4,
                 shadowOffset: {width: 0, height: 0},
@@ -191,11 +206,44 @@ const HomeScreen = props => {
               onPress={() => {
                 PlaySound();
 
+                props.navigation.navigate('Scoreboard');
+              }}
+              style={{
+                marginTop: 20,
+                width: 250,
+                height: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+                // backgroundColor: 'purple',
+                borderRadius: 20,
+                elevation: 4,
+                shadowOffset: {width: 0, height: 0},
+                shadowColor: 'black',
+                shadowRadius: 20,
+                shadowOpacity: 0.1,
+                borderWidth:1,
+                borderColor:'white',
+                backgroundColor:'transparent',
+                // marginEnd: 19,
+              }}>
+              <Text
+                style={{
+                  fontFamily: 'LeagueSpartan-SemiBold',
+                  color: 'white',
+                  fontSize: 25,
+                }}>
+                {t('scoreboard')}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                PlaySound();
+
                 props.navigation.navigate('Login');
               }}
               style={{
                 marginTop: 20,
-                width: 120,
+                width: 250,
                 height: 60,
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -222,6 +270,7 @@ const HomeScreen = props => {
             <TouchableOpacity
               onPress={() => {
                 PlaySound();
+                setIsSettingModalVisible(true);
               }}
               style={{
                 width: 50,

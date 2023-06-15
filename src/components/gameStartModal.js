@@ -49,11 +49,13 @@ const GameStartModal = props => {
           style={{
             backgroundColor: 'white',
             width: '83%',
-            height: 210,
             borderRadius: 10,
+            paddingVertical:20
           }}>
           <View style={{flexDirection: 'row-reverse'}}>
-            <TouchableOpacity style={{marginEnd: 8, marginTop: 8}}>
+            <TouchableOpacity
+            onPress={props.onPressCancel}
+            style={{marginEnd: 8, marginTop: 8}}>
               <Entypo name="cross" size={30} color="#d3d3d3" />
             </TouchableOpacity>
           </View>

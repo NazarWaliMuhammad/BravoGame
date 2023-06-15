@@ -6,6 +6,7 @@ import {
   FlatList,
   Image,
   ImageBackground,
+  Pressable,
   Text,
   TextInput,
   TouchableOpacity,
@@ -13,16 +14,20 @@ import {
 } from 'react-native';
 import AppBackground from '../../components/appBackground ';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useTranslation } from 'react-i18next';
 
 const FirstTimeLogin = props => {
   const [isSelectedIt, setIsSelectedIt] = useState(null);
   const [isSelectedEn, setIsSelectedEn] = useState(null);
   const [button, setButton] = useState(true);
   const [langauge, setLanguage] = useState(null);
+  const {i18n} = useTranslation();
   console.log(langauge);
 
   const LanguageSetter = async () => {
     await AsyncStorage.setItem('Selected_Language', langauge);
+    i18n.changeLanguage(isSelectedIt ? 'it' : isSelectedEn ? 'en' : '');
+    props.navigation.replace("Login");
   };
   return (
     <AppBackground>
@@ -61,7 +66,13 @@ const FirstTimeLogin = props => {
               Select Language
             </Text>
           </View>
-          <View
+          <Pressable
+            onPress={() => {
+              setIsSelectedEn(false);
+              setIsSelectedIt(true);
+              setLanguage('it');
+              setButton(false);
+            }}
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-start',
@@ -98,8 +109,14 @@ const FirstTimeLogin = props => {
               }}>
               Italia
             </Text>
-          </View>
-          <View
+          </Pressable>
+          <Pressable
+           onPress={() => {
+            setIsSelectedEn(true);
+            setIsSelectedIt(false);
+            setLanguage('en');
+            setButton(false);
+          }}
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-start',
@@ -135,7 +152,7 @@ const FirstTimeLogin = props => {
               }}>
               English
             </Text>
-          </View>
+          </Pressable>
         </View>
         <TouchableOpacity
           onPress={() => {

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -20,27 +21,29 @@ const loginScreen = props => {
   const [password, setPassword] = useState('');
   const [icon, setIcon] = useState(true);
   const {t, i18n} = useTranslation();
+  const [isLoading,setIsLoading] = useState(false);
   const login = () => {
-    if (email.length === 0 || password.length === 0) {
-      alert('Please enter Email and Password');
-    } else {
-      // setIsLoading(true);
-      auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          alert('User account signed in!');
-          navigation.navigate('Home');
-          // setIsLoading(false);
-        })
-        .catch(error => {
-          // setIsLoading(false);
-          if (error.code === 'auth/invalid-email') {
-            alert('That email address is invalid!');
-          } else {
-            alert(error.code);
-          }
-        });
-    }
+    props.navigation.replace('Home');
+    // if (email.length === 0 || password.length === 0) {
+    //   alert('Please enter Email and Password');
+    // } else {
+
+    //   setIsLoading(true);
+    //   auth()
+    //     .signInWithEmailAndPassword(email, password)
+    //     .then(() => {
+    //       props.navigation.replace('Home');
+    //       setIsLoading(false);
+    //     })
+    //     .catch(error => {
+    //       setIsLoading(false);
+    //       if (error.code === 'auth/invalid-email') {
+    //         alert('That email address is invalid!');
+    //       } else {
+    //         alert(error.code);
+    //       }
+    //     });
+    // }
   };
   return (
     <AppBackground>
@@ -105,7 +108,7 @@ const loginScreen = props => {
           }}>
           <MaterialCommunityIcons
             style={{marginStart: 10}}
-            name="alphabet-latin"
+            name="email-outline"
             size={33}
             color="black"
           />
@@ -114,7 +117,7 @@ const loginScreen = props => {
             onChangeText={val => {
               setEmail(val);
             }}
-            placeholder={t('Username')}
+            placeholder={t('Email')}
             style={{
               width: '80%',
               height: 55,
@@ -189,6 +192,7 @@ const loginScreen = props => {
             PlaySound();
             login();
           }}
+          disabled={isLoading}
           style={{
             marginTop: 30,
             width: '85%',
@@ -203,7 +207,14 @@ const loginScreen = props => {
             shadowRadius: 12,
             shadowOpacity: 0.1,
           }}>
-          <Text
+           {
+            isLoading ? 
+            <ActivityIndicator
+            size={'small'}
+            color='white'
+            />
+            :
+            <Text
             style={{
               fontFamily: 'LeagueSpartan-SemiBold',
               color: 'white',
@@ -211,6 +222,7 @@ const loginScreen = props => {
             }}>
             {t('Login')}
           </Text>
+           }
         </TouchableOpacity>
         <View
           style={{flexDirection: 'row', alignSelf: 'center', marginTop: 20}}>

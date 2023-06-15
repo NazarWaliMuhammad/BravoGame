@@ -24,5 +24,6 @@
    "End the level" : "End the level",
      "Points Earned" : "Points Earned",
    "Retry" : "Retry",
-    "Continue" : "Continue"
+    "Continue" : "Continue",
+    "scoreboard":"Scoreboard"
 }

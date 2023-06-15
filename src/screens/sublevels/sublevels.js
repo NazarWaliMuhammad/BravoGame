@@ -615,11 +615,11 @@ const SubScreen = props => {
         }}>
         <View
           style={{
-            width: '30%',
+            width: '27%',
             height: 40,
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
             marginEnd: 10,
-            borderRadius: 15,
+            borderRadius: 5,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-evenly',
@@ -630,7 +630,6 @@ const SubScreen = props => {
               fontSize: 20,
               fontFamily: 'LeagueSpartan-SemiBold',
               color: 'white',
-              marginTop: 5,
             }}>
             2432
           </Text>
@@ -666,7 +665,7 @@ const SubScreen = props => {
         </TouchableOpacity>
       </View>
 
-      <View
+      {/* <View
         style={{
           width: 100,
           height: 30,
@@ -692,7 +691,7 @@ const SubScreen = props => {
           }}>
           <Timer />
 
-          {/* <Text
+          <Text
             style={{
               fontSize: 16,
               fontFamily: 'LeagueSpartan-SemiBold',
@@ -701,9 +700,9 @@ const SubScreen = props => {
               textAlign: 'center',
             }}>
             {time}
-          </Text> */}
+          </Text>
         </View>
-      </View>
+      </View> */}
       <FlatList
         style={{alignSelf: 'center'}}
         data={data}
@@ -722,7 +721,7 @@ const SubScreen = props => {
                 borderRadius: 15,
                 alignItems: 'center',
                 justifyContent: 'center',
-                opacity: item.isLocked ? 0.5 : 1,
+                opacity: item.isLocked ? 0.7 : 1,
               }}>
               <View
                 style={{
@@ -733,8 +732,8 @@ const SubScreen = props => {
                 <ImageBackground
                   source={item.img}
                   style={{
-                    width: 105,
-                    height: 105,
+                    width: 100,
+                    height: 100,
                     marginTop: 6,
                     borderRadius: 10,
                     alignItems: 'center',
@@ -744,8 +743,8 @@ const SubScreen = props => {
                     <Ionicons
                       style={{alignSelf: 'center'}}
                       name="lock-closed"
-                      size={70}
-                      color="red"
+                      size={50}
+                      color="white"
                     />
                   ) : (
                     ''
@@ -787,7 +786,7 @@ const SubScreen = props => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Ionicons name="arrow-back" size={40} color="#00b200" />
+          <Ionicons name="arrow-back" size={40} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -803,7 +802,7 @@ const SubScreen = props => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Ionicons name="settings" size={40} color="#00b200" />
+          <Ionicons name="settings" size={40} color="black" />
         </TouchableOpacity>
       </View>
       <GameStartModal

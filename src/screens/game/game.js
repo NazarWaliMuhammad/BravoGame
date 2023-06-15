@@ -8,6 +8,7 @@ import AppBackground from '../../components/appBackground ';
 import {useSelector, useDispatch} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import Timer from '../../components/Timer';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 const GameScreen = props => {
   const {t, i18n} = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
@@ -106,63 +107,49 @@ const GameScreen = props => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <View
+          <View
           style={{
-            width: '35%',
-            height: 55,
-            backgroundColor: 'white',
-            marginEnd: 10,
-            borderRadius: 15,
+            width: '20%',
+            height: 40,
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+            borderRadius: 5,
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
+            marginRight:10
           }}>
+          <AntDesign name="clockcircleo" size={19} color="white" />
           <Text
             style={{
-              fontSize: 16,
+              fontSize: 20,
               fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#00b200',
-              textAlign: 'center',
+              color: 'white',
+              // marginTop: 5,
             }}>
-            {t('ScoreBoard')}
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#FFB600',
-              marginTop: 5,
-            }}>
-            2432
+            <Timer/>
           </Text>
         </View>
         <View
           style={{
-            width: '35%',
-            height: 55,
-            backgroundColor: 'whit',
-            marginStart: 10,
-            borderRadius: 15,
+            width: '27%',
+            height: 40,
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+            borderRadius: 5,
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
+            marginLeft:10
           }}>
+          <AntDesign name="star" size={24} color="#FFB600" />
           <Text
             style={{
-              fontSize: 18,
+              fontSize: 20,
               fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#00b200',
+              color: 'white',
+              // marginTop: 5,
             }}>
-            {t('Time Remaining')}
+            2432
           </Text>
-          <Timer />
-          {/* <Text
-            style={{
-              fontSize: 18,
-              fontFamily: 'LeagueSpartan-SemiBold',
-              color: '#FFB600',
-              marginTop: 5,
-            }}>
-            {time}
-          </Text> */}
         </View>
       </View>
       <View

@@ -24,6 +24,7 @@
    "End the level" : "Termina il livello",
    "Points Earned" : "Punti guadagnati",
    "Retry" : "Riprova",
-    "Continue" : "Continua"
+    "Continue" : "Continua",
+    "scoreboard":"Tabellone"
 
 }

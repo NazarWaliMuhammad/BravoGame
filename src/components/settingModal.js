@@ -60,18 +60,19 @@ const SettingModal = props => {
           style={{
             backgroundColor: 'white',
             width: '80%',
-            height: 400,
             borderRadius: 10,
             alignItems: 'center',
             borderWidth: 3,
             borderColor: '#FFB600',
+            padding:10
+            // paddingVertical:10
           }}>
           <Text
             style={{
               fontFamily: 'LeagueSpartan-Bold',
-              fontSize: 50,
+              fontSize: 35,
               color: '#00b200',
-              marginTop: 30,
+              marginTop: 15,
             }}>
             {t('Settings')}
           </Text>
@@ -85,7 +86,6 @@ const SettingModal = props => {
             <View
               style={{
                 width: '100%',
-                height: 40,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
@@ -97,8 +97,8 @@ const SettingModal = props => {
                 style={{
                   marginStart: 10,
                   fontFamily: 'LeagueSpartan-SemiBold',
-                  fontSize: 30,
-                  color: '#FFB600',
+                  fontSize: 25,
+                  color: 'black',
                 }}>
                 Sound
               </Text>
@@ -118,7 +118,6 @@ const SettingModal = props => {
             <View
               style={{
                 width: '100%',
-                height: 60,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
@@ -130,8 +129,8 @@ const SettingModal = props => {
                 style={{
                   marginStart: 10,
                   fontFamily: 'LeagueSpartan-SemiBold',
-                  fontSize: 30,
-                  color: '#FFB600',
+                  fontSize: 25,
+                  color: 'black',
                 }}>
                 {t('Music')}
               </Text>
@@ -151,7 +150,6 @@ const SettingModal = props => {
             <View
               style={{
                 width: '100%',
-                height: 50,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
@@ -161,8 +159,8 @@ const SettingModal = props => {
                 style={{
                   marginStart: 10,
                   fontFamily: 'LeagueSpartan-SemiBold',
-                  fontSize: 30,
-                  color: '#FFB600',
+                  fontSize: 25,
+                  color: 'black',
                 }}>
                 {t('Language')}
               </Text>
@@ -219,19 +217,21 @@ const SettingModal = props => {
                 props.onPressC();
               }}
               style={{
-                width: '40%',
-                height: 40,
+                width: '45%',
+                height: 50,
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: '#00b200',
+                backgroundColor: '#FFEBEB',
                 marginStart: 10,
                 borderRadius: 10,
+                borderWidth:1,
+                borderColor:'red'
               }}>
               <Text
                 style={{
                   fontFamily: 'LeagueSpartan-SemiBold',
-                  fontSize: 23,
-                  color: 'white',
+                  fontSize: 18,
+                  color: 'red',
                   borderRadius: 10,
                 }}>
                 {t('Cancel')}
@@ -244,19 +244,21 @@ const SettingModal = props => {
                 props.onPressK();
               }}
               style={{
-                width: '40%',
-                height: 40,
+                width: '45%',
+                height: 50,
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: '#00b200',
+                borderColor: '#00b200',
                 marginEnd: 10,
                 borderRadius: 10,
+                borderWidth:1,
+                backgroundColor:'#E6FFE6'
               }}>
               <Text
                 style={{
                   fontFamily: 'LeagueSpartan-SemiBold',
                   fontSize: 23,
-                  color: 'white',
+                  color: '#00b200',
                   borderRadius: 10,
                 }}>
                 Ok
