@@ -10,6 +10,7 @@ import {
   Picker,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import PlaySound from '../../assets/sound/pressSound';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useTranslation} from 'react-i18next';
@@ -18,12 +19,14 @@ const SettingModal = props => {
   const [soundIcon, setSoundIcon] = useState(true);
   const [musicIcon, setMusicIcon] = useState(true);
   const [isSelected, setIsSelected] = useState(true);
-  const {i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
+  const [applangauge, setAppLanguage] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
-  const handleChangeLanguage = language => {
-    i18n.changeLanguage(language);
-    setSelectedLanguage(language);
+  const handleChangeLanguage = async () => {
+    i18n.changeLanguage(applangauge);
+    setSelectedLanguage(applangauge);
+    await AsyncStorage.setItem('Selected_Language', applangauge);
   };
   //   const SLIDER_WIDTH = Dimensions.get('window').width + 30;
   //   const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
@@ -70,7 +73,7 @@ const SettingModal = props => {
               color: '#00b200',
               marginTop: 30,
             }}>
-            Settings
+            {t('Settings')}
           </Text>
           <View
             style={{
@@ -115,11 +118,13 @@ const SettingModal = props => {
             <View
               style={{
                 width: '100%',
-                height: 50,
+                height: 60,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 paddingTop: 20,
+                borderBottomWidth: 1,
+                borderBottomColor: '#d3d3d3',
               }}>
               <Text
                 style={{
@@ -128,7 +133,7 @@ const SettingModal = props => {
                   fontSize: 30,
                   color: '#FFB600',
                 }}>
-                Music
+                {t('Music')}
               </Text>
               <TouchableOpacity
                 style={{marginEnd: 10}}
@@ -159,7 +164,7 @@ const SettingModal = props => {
                   fontSize: 30,
                   color: '#FFB600',
                 }}>
-                Language
+                {t('Language')}
               </Text>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <TouchableOpacity
@@ -168,7 +173,7 @@ const SettingModal = props => {
                   onPress={() => {
                     setIsSelected(true);
                     PlaySound();
-                    handleChangeLanguage('en');
+                    setAppLanguage('en');
                   }}>
                   <Text
                     style={{
@@ -186,7 +191,7 @@ const SettingModal = props => {
                   onPress={() => {
                     setIsSelected(false);
                     PlaySound();
-                    handleChangeLanguage('it');
+                    setAppLanguage('it');
                   }}>
                   <Text
                     style={{
@@ -209,7 +214,10 @@ const SettingModal = props => {
               justifyContent: 'space-between',
             }}>
             <TouchableOpacity
-              onPress={props.onPressC}
+              onPress={() => {
+                setIsSelected(prev);
+                props.onPressC();
+              }}
               style={{
                 width: '40%',
                 height: 40,
@@ -226,12 +234,15 @@ const SettingModal = props => {
                   color: 'white',
                   borderRadius: 10,
                 }}>
-                Cancel
+                {t('Cancel')}
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={props.onPressK}
+              onPress={() => {
+                handleChangeLanguage();
+                props.onPressK();
+              }}
               style={{
                 width: '40%',
                 height: 40,

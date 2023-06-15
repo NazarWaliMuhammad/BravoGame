@@ -11,7 +11,9 @@ import {
 import Carousel from 'react-native-reanimated-carousel';
 import PlaySound from '../../assets/sound/pressSound';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {useTranslation} from 'react-i18next';
 const LoseModal = props => {
+  const {t, i18n} = useTranslation();
   //   const SLIDER_WIDTH = Dimensions.get('window').width + 30;
   //   const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
 
@@ -78,7 +80,7 @@ const LoseModal = props => {
                 color: 'white',
                 // marginTop: 30,
               }}>
-              Riprova
+              {t('Retry')}
             </Text>
           </TouchableOpacity>
         </View>

@@ -9,8 +9,9 @@ import {
   Dimensions,
 } from 'react-native';
 import PlaySound from '../../assets/sound/pressSound';
-
+import {useTranslation} from 'react-i18next';
 const WinModal = props => {
+  const {t, i18n} = useTranslation();
   //   const SLIDER_WIDTH = Dimensions.get('window').width + 30;
   //   const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
 
@@ -61,7 +62,7 @@ const WinModal = props => {
           </Text>
           <View
             style={{
-              width: '60%',
+              width: '63%',
               height: 45,
               backgroundColor: '#FFB600',
               alignItems: 'center',
@@ -71,11 +72,11 @@ const WinModal = props => {
             <Text
               style={{
                 fontFamily: 'LeagueSpartan-Medium',
-                fontSize: 22,
+                fontSize: 20,
                 color: 'white',
                 marginTop: 10,
               }}>
-              50+ Points Earned
+              50+ {t('Points Earned')}
             </Text>
           </View>
           <TouchableOpacity
@@ -98,7 +99,7 @@ const WinModal = props => {
                 color: 'white',
                 // marginTop: 30,
               }}>
-              Continua
+              {t('Continue')}
             </Text>
           </TouchableOpacity>
         </View>

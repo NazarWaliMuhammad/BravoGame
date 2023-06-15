@@ -8,13 +8,15 @@ import MainScreen from '../screens/MainLevels/MainLevels';
 import SplashScreen from '../screens/splash/splash';
 import SubScreen from '../screens/sublevels/sublevels';
 import GameScreen from '../screens/game/game';
-
+import FirstTimeLogin from '../screens/FirstTimeLogin/FirstTimeLogin';
 function Main() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="FirstTimeLogin" component={FirstTimeLogin} />
         <Stack.Screen name="Splash" component={SplashScreen} />
+
         <Stack.Screen name="Login" component={loginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />

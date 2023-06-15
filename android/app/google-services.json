@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "727254361271",
+    "project_id": "bravogame-29a10",
+    "storage_bucket": "bravogame-29a10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727254361271:android:40678f0d04a0638b06d932",
+        "android_client_info": {
+          "package_name": "com.flippergame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727254361271-nvhq9als4f5hhltppo40n5uco9laibk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZMQBeC5mx0ulnfVEXowoRSRvxtQPqPTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727254361271-nvhq9als4f5hhltppo40n5uco9laibk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

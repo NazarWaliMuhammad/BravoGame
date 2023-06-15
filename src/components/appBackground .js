@@ -22,18 +22,18 @@ const AppBackground = props => {
     '#12eb62',
   ];
   return (
-    <LinearGradient
-      colors={gradientColors}
-      start={{x: 0, y: 0}}
-      end={{x: 1, y: 1}}
-      style={{flex: 1}}>
-      {props.children}
-    </LinearGradient>
-    // <ImageBackground
-    //   source={require('../../assets/image/appBackground.jpeg')}
+    // <LinearGradient
+    //   colors={gradientColors}
+    //   start={{x: 0, y: 0}}
+    //   end={{x: 1, y: 1}}
     //   style={{flex: 1}}>
     //   {props.children}
-    // </ImageBackground>
+    // </LinearGradient>
+    <ImageBackground
+      source={require('../../assets/image/appBackground.png')}
+      style={{flex: 1}}>
+      {props.children}
+    </ImageBackground>
   );
 };
 

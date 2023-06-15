@@ -16,13 +16,13 @@ import PlaySound from '../../../assets/sound/pressSound';
 import SettingModal from '../../components/settingModal';
 import {MAIN_LEVLES} from '../../utils/services/GameServices/LevelUtils';
 import AppBackground from '../../components/appBackground ';
+import {useTranslation} from 'react-i18next';
 const MainScreen = props => {
-  console.log();
+  const {t, i18n} = useTranslation();
+
   const [icon, setIcon] = useState(true);
   const [settingModal, setSettingModal] = useState(false);
-  const console9 = item => {
-    console.log(item);
-  };
+
   const data = [
     {
       level: '1st',
@@ -88,11 +88,12 @@ const MainScreen = props => {
           }}>
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 16,
               fontFamily: 'LeagueSpartan-SemiBold',
               color: '#00b200',
+              textAlign: 'center',
             }}>
-            Scoreboard
+            {t('ScoreBoard')}
           </Text>
           <Text
             style={{
@@ -118,7 +119,7 @@ const MainScreen = props => {
             fontFamily: 'LeagueSpartan-SemiBold',
             color: 'white',
           }}>
-          Main Levels
+          {t('Main Levels')}
         </Text>
       </View>
       <FlatList
@@ -159,7 +160,7 @@ const MainScreen = props => {
                     marginTop: 5,
                     color: '#FFB600',
                   }}>
-                  Level
+                  {t('Level')}
                 </Text>
                 <ImageBackground
                   source={{

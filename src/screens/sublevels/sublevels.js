@@ -11,20 +11,21 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import PlaySound from '../../../assets/sound/pressSound';
 import SettingModal from '../../components/settingModal';
 import GameStartModal from '../../components/gameStartModal';
 import AppBackground from '../../components/appBackground ';
 import {useTranslation} from 'react-i18next';
-
+import Timer from '../../components/Timer';
 // import {ANIMALS_IMGS} from '../../utils/services/GameServices/LevelUtils';
 const SubScreen = props => {
   const [settingModal, setSettingModal] = useState(false);
   const [category, setCategory] = useState(null);
   const [infoModalVisible, setInfoModalVisible] = useState(false);
   const {t, i18n} = useTranslation();
-
+  const time = useSelector(state => state.time);
   useEffect(() => {
     if (props.route.params.name === 'Animals') {
       setCategory([
@@ -689,7 +690,9 @@ const SubScreen = props => {
             alignItems: 'center',
             flexDirection: 'row',
           }}>
-          <Text
+          <Timer />
+
+          {/* <Text
             style={{
               fontSize: 16,
               fontFamily: 'LeagueSpartan-SemiBold',
@@ -697,8 +700,8 @@ const SubScreen = props => {
               marginTop: 5,
               textAlign: 'center',
             }}>
-            04:47
-          </Text>
+            {time}
+          </Text> */}
         </View>
       </View>
       <FlatList

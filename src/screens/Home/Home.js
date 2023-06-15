@@ -14,7 +14,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontiso from 'react-native-vector-icons/Fontisto';
 import PlaySound from '../../../assets/sound/pressSound';
 import AppBackground from '../../components/appBackground ';
+import {useTranslation} from 'react-i18next';
 const HomeScreen = props => {
+  const {t, i18n} = useTranslation();
+
   const data = [
     {
       level: '1st',
@@ -53,27 +56,22 @@ const HomeScreen = props => {
         <View
           style={{
             width: 280,
-            height: 110,
-            backgroundColor: 'purple',
+            height: 100,
+
             justifyContent: 'center',
             alignItems: 'center',
-            borderRadius: 20,
           }}>
-          <Text
-            style={{
-              fontFamily: 'LeagueSpartan-Bold',
-              fontSize: 65,
-              color: 'white',
-            }}>
-            BRAVO!!
-          </Text>
+          <Image
+            source={require('../../../assets/image/bravo.png')}
+            style={{width: 300, height: 300}}
+          />
         </View>
         <Text
           style={{
-            marginTop: 20,
             fontFamily: 'LeagueSpartan-Medium',
             fontSize: 26,
             color: 'white',
+            textAlign: 'center',
           }}>
           Refine your memories....
         </Text>
@@ -186,7 +184,7 @@ const HomeScreen = props => {
                   color: 'white',
                   fontSize: 25,
                 }}>
-                PLay
+                {t('Play')}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -216,7 +214,7 @@ const HomeScreen = props => {
                   color: 'white',
                   fontSize: 25,
                 }}>
-                Quit
+                {t('Quit')}
               </Text>
             </TouchableOpacity>
           </View>

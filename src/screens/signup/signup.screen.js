@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View, Image} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PlaySound from '../../../assets/sound/pressSound';
 import AppBackground from '../../components/appBackground ';
+import {useTranslation} from 'react-i18next';
 const SignUpScreen = props => {
   const [icon, setIcon] = useState(true);
+  const {t, i18n} = useTranslation();
+
   return (
     // <View
     //   style={{
@@ -34,13 +37,28 @@ const SignUpScreen = props => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
+        <View
+          style={{
+            width: 280,
+            height: 110,
+
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image
+            source={require('../../../assets/image/bravo.png')}
+            style={{width: 300, height: 300}}
+          />
+        </View>
         <Text
           style={{
             color: 'white',
-            fontSize: 50,
-            fontFamily: 'LeagueSpartan-Bold',
+            fontSize: 26,
+            fontFamily: 'LeagueSpartan-Medium',
+            marginVertical: -10,
+            marginBottom: 20,
           }}>
-          Sign up
+          {t('Register yourself')}
         </Text>
       </View>
       <View style={{width: '100%', alignSelf: 'center', alignItems: 'center'}}>
@@ -50,18 +68,18 @@ const SignUpScreen = props => {
             height: 55,
             flexDirection: 'row',
             backgroundColor: 'white',
-            borderRadius: 20,
+            borderRadius: 12,
             alignItems: 'center',
-            marginTop: 20,
+            marginTop: 10,
           }}>
           <MaterialCommunityIcons
-            style={{marginStart: 24}}
+            style={{marginStart: 10}}
             name="alphabet-latin"
             size={33}
-            color="#00b200"
+            color="black"
           />
           <TextInput
-            placeholder="Username"
+            placeholder={t('Username')}
             style={{
               width: '80%',
               height: 55,
@@ -72,27 +90,28 @@ const SignUpScreen = props => {
             placeholderTextColor="gray"
           />
         </View>
+
         <View
           style={{
             width: '85%',
             height: 55,
             flexDirection: 'row',
             backgroundColor: 'white',
-            borderRadius: 20,
+            borderRadius: 12,
             alignItems: 'center',
             marginTop: 20,
             justifyContent: 'space-between',
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <MaterialCommunityIcons
-              style={{marginStart: 24}}
+              style={{marginStart: 14}}
               name="key"
               size={30}
-              color="#00b200"
+              color="black"
             />
 
             <TextInput
-              placeholder="Password"
+              placeholder={t('Password')}
               style={{
                 width: '70%',
                 height: 55,
@@ -112,45 +131,46 @@ const SignUpScreen = props => {
             {icon ? (
               <MaterialCommunityIcons
                 style={{marginEnd: 30}}
-                name="eye"
+                name="eye-off"
                 size={28}
-                color="#00b200"
+                color="black"
               />
             ) : (
               <MaterialCommunityIcons
                 style={{marginEnd: 30}}
-                name="eye-off"
+                name="eye"
                 size={28}
-                color="#00b200"
+                color="black"
               />
             )}
           </TouchableOpacity>
         </View>
+
         <TouchableOpacity
           onPress={() => {
             PlaySound();
           }}
           style={{
-            marginTop: 20,
-            width: '45 %',
+            marginTop: 30,
+            width: '85%',
             height: 60,
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#FFB600',
-            borderRadius: 20,
+            borderRadius: 12,
             elevation: 4,
             shadowOffset: {width: 0, height: 0},
             shadowColor: 'black',
-            shadowRadius: 20,
+            shadowRadius: 12,
             shadowOpacity: 0.1,
           }}>
           <Text
             style={{
               fontFamily: 'LeagueSpartan-SemiBold',
               color: 'white',
-              fontSize: 25,
+              fontSize: 27,
             }}>
-            Sign up
+            {t('SignUp')}
           </Text>
         </TouchableOpacity>
         <View
@@ -161,7 +181,7 @@ const SignUpScreen = props => {
               fontSize: 18,
               color: 'white',
             }}>
-            Already have an account?
+            {t('Already have an account')}
           </Text>
           <TouchableOpacity
             onPress={() => {
@@ -175,7 +195,7 @@ const SignUpScreen = props => {
                 fontSize: 18,
                 color: 'red',
               }}>
-              Login
+              {t('Login')}
             </Text>
           </TouchableOpacity>
         </View>

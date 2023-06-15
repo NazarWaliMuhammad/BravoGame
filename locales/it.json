@@ -1,4 +1,29 @@
 {
-  "welcome": "benvenuto",
-  "greeting": "Ciao!"
+  "Username": "Nome utente",
+  "Password": "Password",
+  "Login" : "Accesso",
+  "Dont have an account" : "Non hai un account?",
+  "Already have an account" : "Hai già un account?",
+  "SignUp" : "Registrati",
+  "Register yourself" : "Registrati",
+  "Play"  :"Gioca",
+  "Quit" : "Esci",
+  "ScoreBoard" : "Tabellone dei punteggi",
+  "Main Levels" : "Livelli principali",
+  "Level" : "Livello",
+  "Information" : "Informazioni",
+  "Cancel"  :"Annulla",
+  "Start" : "Inizia",
+  "Complete All SubLevels In 5 Minutes" : "Completa tutti i sotto-livelli in 5 minuti",
+  "Settings"  :"Impostazioni",
+  "Music" : "Musica",
+  "Language" : "Lingua",
+  "Guess The Tiles" : "Indovina le tessere",
+   "Guess" : "Indovina",
+   "Time Remaining" : "Tempo rimanente",
+   "End the level" : "Termina il livello",
+   "Points Earned" : "Punti guadagnati",
+   "Retry" : "Riprova",
+    "Continue" : "Continua"
+
 }

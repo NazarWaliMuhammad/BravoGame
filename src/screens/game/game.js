@@ -6,9 +6,10 @@ import FlipCard from 'react-native-flip-card';
 import GameStartModal from '../../components/gameStartModal';
 import AppBackground from '../../components/appBackground ';
 import {useSelector, useDispatch} from 'react-redux';
-import {setTimer} from '../../../redux/Action/Action';
+import {useTranslation} from 'react-i18next';
 import Timer from '../../components/Timer';
 const GameScreen = props => {
+  const {t, i18n} = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
   const time = useSelector(state => state.time);
   const dispatch = useDispatch();
@@ -117,11 +118,12 @@ const GameScreen = props => {
           }}>
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 16,
               fontFamily: 'LeagueSpartan-SemiBold',
               color: '#00b200',
+              textAlign: 'center',
             }}>
-            Scoreboard
+            {t('ScoreBoard')}
           </Text>
           <Text
             style={{
@@ -137,7 +139,7 @@ const GameScreen = props => {
           style={{
             width: '35%',
             height: 55,
-            backgroundColor: 'white',
+            backgroundColor: 'whit',
             marginStart: 10,
             borderRadius: 15,
             alignItems: 'center',
@@ -149,7 +151,7 @@ const GameScreen = props => {
               fontFamily: 'LeagueSpartan-SemiBold',
               color: '#00b200',
             }}>
-            Time Remaining
+            {t('Time Remaining')}
           </Text>
           <Timer />
           {/* <Text
@@ -176,7 +178,7 @@ const GameScreen = props => {
             color: 'white',
             fontSize: 40,
           }}>
-          Guess The Tiles
+          {t('Guess The Tiles')}
         </Text>
       </View>
       <FlatList
@@ -256,7 +258,7 @@ const GameScreen = props => {
                           fontFamily: 'LeagueSpartan-SemiBold',
                           color: '#00b200',
                         }}>
-                        Guess
+                        {t('Guess')}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -287,7 +289,7 @@ const GameScreen = props => {
               fontFamily: 'LeagueSpartan-Bold',
               color: 'white',
             }}>
-            End the level
+            {t('End the level')}
           </Text>
         </TouchableOpacity>
       </View>

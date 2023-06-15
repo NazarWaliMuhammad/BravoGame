@@ -11,7 +11,9 @@ import {
 import Carousel from 'react-native-reanimated-carousel';
 import PlaySound from '../../assets/sound/pressSound';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {useTranslation} from 'react-i18next';
 const GameStartModal = props => {
+  const {t, i18n} = useTranslation();
   const [soundIcon, setSoundIcon] = useState(true);
   const [musicIcon, setMusicIcon] = useState(true);
 
@@ -67,7 +69,7 @@ const GameStartModal = props => {
                 fontSize: 35,
                 color: '#FFB600',
               }}>
-              Information
+              {t('Information')}
             </Text>
           </View>
           <View
@@ -85,7 +87,7 @@ const GameStartModal = props => {
                 fontSize: 19,
                 color: 'gray',
               }}>
-              Complete All SubLevels In 5 Minutes
+              {t('Complete All SubLevels In 5 Minutes')}
             </Text>
           </View>
           <View
@@ -113,7 +115,7 @@ const GameStartModal = props => {
                   fontSize: 17,
                   color: 'red',
                 }}>
-                Cancel
+                {t('Cancel')}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -133,7 +135,7 @@ const GameStartModal = props => {
                   fontSize: 17,
                   color: 'white',
                 }}>
-                Start
+                {t('Start')}
               </Text>
             </TouchableOpacity>
           </View>

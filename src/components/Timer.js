@@ -25,16 +25,18 @@ const Timer = () => {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
 
-  return <Text style={styles.timer}>{formatTime(time)}</Text>;
+  return (
+    <Text
+      style={{
+        fontSize: 16,
+        fontFamily: 'LeagueSpartan-SemiBold',
+        color: 'white',
+        marginTop: 5,
+        textAlign: 'center',
+      }}>
+      {formatTime(time)}
+    </Text>
+  );
 };
-
-const styles = StyleSheet.create({
-  timer: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 20,
-  },
-});
 
 export default Timer;

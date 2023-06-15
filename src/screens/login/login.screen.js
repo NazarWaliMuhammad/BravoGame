@@ -1,19 +1,47 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ImageBackground,
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import PlaySound from '../../../assets/sound/pressSound';
+import {useTranslation} from 'react-i18next';
+import auth from '@react-native-firebase/auth';
+
 import AppBackground from '../../components/appBackground ';
 const loginScreen = props => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [icon, setIcon] = useState(true);
-
+  const {t, i18n} = useTranslation();
+  const login = () => {
+    if (email.length === 0 || password.length === 0) {
+      alert('Please enter Email and Password');
+    } else {
+      // setIsLoading(true);
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert('User account signed in!');
+          navigation.navigate('Home');
+          // setIsLoading(false);
+        })
+        .catch(error => {
+          // setIsLoading(false);
+          if (error.code === 'auth/invalid-email') {
+            alert('That email address is invalid!');
+          } else {
+            alert(error.code);
+          }
+        });
+    }
+  };
   return (
     <AppBackground>
       <View
@@ -23,7 +51,11 @@ const loginScreen = props => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Text
+        <Image
+          source={require('../../../assets/image/bravo.png')}
+          style={{width: 300, height: 300}}
+        />
+        {/* <Text
           style={{
             color: 'white',
             fontSize: 60,
@@ -31,7 +63,7 @@ const loginScreen = props => {
             marginTop: 60,
           }}>
           BRAVO!!
-        </Text>
+        </Text> */}
       </View>
       <View style={{width: '100%', alignSelf: 'center', alignItems: 'center'}}>
         {/* <View
@@ -78,7 +110,11 @@ const loginScreen = props => {
             color="black"
           />
           <TextInput
-            placeholder="Username"
+            value={email}
+            onChangeText={val => {
+              setEmail(val);
+            }}
+            placeholder={t('Username')}
             style={{
               width: '80%',
               height: 55,
@@ -109,7 +145,11 @@ const loginScreen = props => {
             />
 
             <TextInput
-              placeholder="Password"
+              value={password}
+              onChangeText={val => {
+                setPassword(val);
+              }}
+              placeholder={t('Password')}
               style={{
                 width: '70%',
                 height: 55,
@@ -147,7 +187,7 @@ const loginScreen = props => {
         <TouchableOpacity
           onPress={() => {
             PlaySound();
-            props.navigation.navigate('Home');
+            login();
           }}
           style={{
             marginTop: 30,
@@ -169,7 +209,7 @@ const loginScreen = props => {
               color: 'white',
               fontSize: 27,
             }}>
-            Login
+            {t('Login')}
           </Text>
         </TouchableOpacity>
         <View
@@ -180,7 +220,7 @@ const loginScreen = props => {
               fontSize: 18,
               color: 'white',
             }}>
-            Don't have an account?
+            {t('Dont have an account')}
           </Text>
           <TouchableOpacity
             onPress={() => {
@@ -194,7 +234,7 @@ const loginScreen = props => {
                 fontSize: 18,
                 color: 'yellow',
               }}>
-              Sign up
+              {t('SignUp')}
             </Text>
           </TouchableOpacity>
         </View>
